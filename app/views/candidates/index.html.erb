@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Candidates</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Candidate</th>
+      <th>City</th>
+      <th>Experience</th>
+      <th>Technologies</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%= candidate.id %></td>
+        <td><%= candidate.city %></td>
+        <td><%= candidate.experience %></td>
+        <td>
+          <% candidate.technologies.each do |technology| %>
+            <% i = technology.index(",") %>
+            <% j = technology.index("tech") + 6 %>
+            <% t = technology.length - 1 %>
+            <ul>
+              <li>
+                Nome: <%= technology[8...i] %> - Principal: <%= technology[j...t] %>
+              </li>
+            </ul>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', candidate %></td>
+        <td><%= link_to 'Edit', edit_candidate_path(candidate) %></td>
+        <td><%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
+
+<br>
+
+<%= link_to 'New Candidate', new_candidate_path %>

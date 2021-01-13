@@ -1,0 +1,39 @@
+<h1>Candidatos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Candidato</th>
+      <th>City</th>
+      <th>Experience</th>
+      <th>Technologies</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%= candidate.id %></td>
+        <td><%= candidate.city %></td>
+        <td><%= candidate.experience %></td>
+        <td>
+          <% candidate.technologies.each do |technology| %>
+            <% i = technology.index(",") %>
+            <% j = technology.index("tech") + 6 %>
+            <% t = technology.length - 1 %>
+            <ul>
+              <li>
+                Nome: <%= technology[8...i] %> - Principal: <%= technology[j...t] %>
+              </li>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', jobs_path %>

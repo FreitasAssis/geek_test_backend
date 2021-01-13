@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Back', candidates_path %>
+
+<p>
+  <strong>City:</strong>
+  <%= @candidate.city %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @candidate.experience %>
+</p>
+
+<p>
+  <strong>Technologies:</strong>
+</p>
+
+<ul>
+  <% @candidate.technologies.each do |technology| %>
+    <% i = technology.index(",") %>
+    <% j = technology.index("tech") + 6 %>
+    <% t = technology.length - 1 %>
+    <% unless technology.nil? %>
+      <li>
+        Nome: <%= technology[8...i] %> - Principal: <%= technology[j...t] %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_candidate_path(@candidate) %> |
+

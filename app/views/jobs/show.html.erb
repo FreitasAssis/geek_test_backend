@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Back', jobs_path %>
+
+<p>
+  <strong>City:</strong>
+  <%= @job.city %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @job.experience %>
+</p>
+
+<p>
+  <strong>Technologies:</strong>
+</p>
+
+<ul>
+  <% @job.technologies.each do |technology| %>
+    <% unless technology.nil? %>
+      <li>
+        <%= technology %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_job_path(@job) %>
+
+<p>Encontrar candidatos:</p>
+
+<%= link_to "De #{@job.city}", "/candidates_by_city/#{@job.id}" %> |
+<%= link_to "#{@job.experience} de experiência", "/candidates_by_experience/#{@job.id}" %>
+<% unless @job.technologies.first.nil? %>
+  | <%= link_to "Conhece as tecnologias desta vaga", "/candidates_by_technologies/#{@job.id}" %>
+<% end %>
